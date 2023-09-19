@@ -1,0 +1,6 @@
+- ErrorBoundary
+- MobX / Redux / ContextAPI
+- React Router
+- Authen / Author
+
+- Prettier: https://github.com/tailwindlabs/prettier-plugin-tailwindcss
