@@ -1,2 +1,2 @@
 export * from './http';
-export * from './customer';
+export * from './notification';

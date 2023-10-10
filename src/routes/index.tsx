@@ -16,11 +16,8 @@ const router = createBrowserRouter([
 						index: true,
 						path: 'login',
 						element: <LoginForm />,
-					},
-					{
-						path: 'register',
 						async lazy() {
-							return { Component: <>Register Page</> };
+							return { Component: LoginForm };
 						},
 					},
 					{
@@ -29,6 +26,19 @@ const router = createBrowserRouter([
 						element: <>Logout Page</>,
 					},
 				],
+			},
+			{
+				path: 'mail',
+        // loader: checkAuthLoader,
+        children: [
+					{
+						path: 'builder',
+            async lazy() {
+              const { MailBuilder } = await import('@/features');
+							return { Component: MailBuilder };
+						},
+					},
+        ]
 			},
 		],
 	},

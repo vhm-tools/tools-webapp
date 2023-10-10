@@ -3,8 +3,8 @@ import Cookies from 'js-cookie';
 export const config = {
 	server: {
 		baseUrl: 'http://localhost',
-		port: 2005,
-		prefix: 'api/v1',
+		port: 1515,
+		prefix: 'api',
 		headers: {
 			'Content-Type': 'application/json',
 		},

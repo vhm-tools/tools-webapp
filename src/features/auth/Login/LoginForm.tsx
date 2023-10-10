@@ -1,7 +1,7 @@
 import { FormikHelpers, useFormik } from 'formik';
 import { useAlert } from 'react-alert';
 import Cookies from 'js-cookie';
-import { fetchApi, getCustomer } from '@/apis';
+import { fetchApi } from '@/apis';
 
 type InitialValuesType = {
 	username: string;
@@ -26,9 +26,6 @@ export const LoginForm = () => {
 			}
 
       Cookies.set('token', token, { expires: 1 })
-
-      const customer = await getCustomer();
-      console.log({ customer });
 
 			alert.success('Login successful');
 			resetForm();
