@@ -1,9 +1,10 @@
-import { fetchApi } from '@/apis';
-import { SendMailPayload } from '@/typings';
+import { HttpRequest } from '../http';
+import { SendMailPayload } from '@/types';
 
 export const sendMail = async (payload: SendMailPayload) => {
-	return fetchApi('notification/mail', {
+	const http = new HttpRequest();
+	return http.fetch('notification/mail', {
 		method: 'POST',
-    body: JSON.stringify(payload),
+		body: JSON.stringify(payload),
 	});
 };

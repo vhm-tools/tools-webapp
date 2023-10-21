@@ -1,7 +1,7 @@
 import { RouterProvider } from 'react-router-dom';
 import { Provider, positions } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
-import router from './routes';
+import createRouters from './routes';
 
 const options = {
 	timeout: 5000,
@@ -11,7 +11,10 @@ const options = {
 const App = () => {
 	return (
 		<Provider template={AlertTemplate} {...options}>
-			<RouterProvider router={router} fallbackElement={<p>Loading...</p>} />
+			<RouterProvider
+				router={createRouters()}
+				fallbackElement={<p>Loading...</p>}
+			/>
 		</Provider>
 	);
 };

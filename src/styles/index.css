@@ -32,3 +32,22 @@ nav ul li {
 nav ul li {
 	@apply mb-2;
 }
+
+.button-custom {
+	width: 130px;
+	height: 40px;
+	padding: 10px 25px;
+	font-family: 'Lato', sans-serif;
+	font-weight: 500;
+	background: transparent;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	position: relative;
+	display: inline-block;
+}
+
+.button-custom:hover {
+	box-shadow: -1px -1px 7px 1px rgba(0, 0, 0, 0.41);
+	-webkit-box-shadow: -1px -1px 7px 1px rgba(0, 0, 0, 0.41);
+	-moz-box-shadow: -1px -1px 7px 1px rgba(0, 0, 0, 0.41);
+}

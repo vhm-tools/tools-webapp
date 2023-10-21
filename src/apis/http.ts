@@ -1,27 +1,53 @@
+import {
+	IExtraConfig,
+	IHttpRequestConfig,
+	IHttpRequest,
+	IHttpResponse,
+} from '@/types';
 import Cookies from 'js-cookie';
 
-export const config = {
-	server: {
-		baseUrl: 'http://localhost',
-		port: 1515,
-		prefix: 'api',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		credentials: 'same-origin',
-	},
-};
+export class HttpRequest implements IHttpRequest {
+	config: IHttpRequestConfig;
 
-export const fetchApi = async (path: string, init?: RequestInit) => {
-	const { baseUrl, port, prefix } = config.server;
-	const token = Cookies.get('token');
+	constructor() {
+		this.config = {
+			server: {
+				baseUrl: import.meta.env.VITE_API_URL || 'http://localhost:1515/api',
+				version: import.meta.env.VITE_API_VERSION || 'v1',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			},
+			credentials: 'include', // same-origin
+		};
+	}
 
-	return fetch(`${baseUrl}:${port}/${prefix}/${path}`, {
-		...init,
-		headers: {
-			...config.server.headers,
-			...init?.headers,
-			...(token && { Authorization: `Bearer ${token}` }),
-		},
-	}).then((res) => res.json());
-};
+	async fetch<T>(
+		path: string,
+		init?: RequestInit,
+		config: IExtraConfig = { addVersion: true }
+	): Promise<IHttpResponse<T>> {
+		const { baseUrl, version, headers } = this.config.server;
+		const token = Cookies.get('token');
+
+		const url = config.addVersion
+			? `${baseUrl}/${version}/${path}`
+			: `${baseUrl}/${path}`;
+
+		return fetch(url, {
+			credentials: this.config.credentials as RequestCredentials,
+			...init,
+			headers: {
+				...headers,
+				...init?.headers,
+				...(token && { Authorization: `Bearer ${token}` }),
+			},
+		}).then((res) => {
+			const responseType = res.headers.get('content-type') || '';
+			if (responseType.includes('application/json')) {
+				return res.json();
+			}
+			return res;
+		});
+	}
+}
