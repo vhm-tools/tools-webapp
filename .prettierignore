@@ -1,7 +1,3 @@
 node_modules/
 dist/
-.eslintrc
-.prettierrc
-package.json
 pnpm-lock.yaml
-tsconfig*

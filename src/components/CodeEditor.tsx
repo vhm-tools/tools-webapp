@@ -8,7 +8,7 @@ type Props = {
 export const CodeEditor = forwardRef<HTMLDivElement | null, Props>(
   ({ onChange }, ref) => {
     const handleEditorDidMount = (editor: any) => {
-      console.log({ editor, ref })
+      console.log({ editor, ref });
       // if (ref && ref.current) {
       //   ref.current = editor;
       // }
