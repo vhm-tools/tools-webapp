@@ -1,5 +1,4 @@
 export interface ICreateTemplate {
-	name: string;
-	description: string;
+  name: string;
+  description: string;
 }
-

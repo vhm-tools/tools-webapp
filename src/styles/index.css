@@ -3,51 +3,53 @@
 @tailwind utilities;
 
 :root {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	line-height: 1.5;
-	font-weight: 400;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
 
-	/* color-scheme: light dark; */
+  /* color-scheme: light dark; */
 
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-text-size-adjust: 100%;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  user-select: none;
 }
 
 h1 {
-	font-size: 3.2em;
-	line-height: 1.1;
+  font-size: 3.2em;
+  line-height: 1.1;
 }
 
 button {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 nav ul li {
-	@apply cursor-pointer;
+  @apply cursor-pointer;
 }
 
 nav ul li {
-	@apply mb-2;
+  @apply mb-2;
 }
 
 .button-custom {
-	width: 130px;
-	height: 40px;
-	padding: 10px 25px;
-	font-family: 'Lato', sans-serif;
-	font-weight: 500;
-	background: transparent;
-	cursor: pointer;
-	transition: all 0.3s ease;
-	position: relative;
-	display: inline-block;
+  width: 130px;
+  height: 40px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
 }
 
 .button-custom:hover {
-	box-shadow: -1px -1px 7px 1px rgba(0, 0, 0, 0.41);
-	-webkit-box-shadow: -1px -1px 7px 1px rgba(0, 0, 0, 0.41);
-	-moz-box-shadow: -1px -1px 7px 1px rgba(0, 0, 0, 0.41);
+  box-shadow: -1px -1px 7px 1px rgba(0, 0, 0, 0.41);
+  -webkit-box-shadow: -1px -1px 7px 1px rgba(0, 0, 0, 0.41);
+  -moz-box-shadow: -1px -1px 7px 1px rgba(0, 0, 0, 0.41);
 }

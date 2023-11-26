@@ -1,28 +1,24 @@
 export interface IHttpRequestConfig {
-	server: {
-		baseUrl: string;
-		version: string;
-		headers: Record<string, any>;
-	};
-	credentials: RequestCredentials;
+  server: {
+    baseUrl: string;
+    version: string;
+    headers: Record<string, any>;
+  };
+  credentials: RequestCredentials;
 }
 
 export interface IExtraConfig {
-	addVersion: boolean;
+  addVersion: boolean;
 }
 
 export interface IHttpRequest {
-	config: IHttpRequestConfig;
-	fetch: (path: string, init?: RequestInit) => Promise<any>;
+  config: IHttpRequestConfig;
+  fetch: (path: string, init?: RequestInit) => Promise<any>;
 }
 
 export interface IHttpResponse<T> {
-	statusCode: number;
-	data: T | T[] | DataResponse<T>;
-	message: string;
-}
-
-export interface DataResponse<T> {
-	data: T | T[];
-	metadata?: any;
+  statusCode: number;
+  data: T | T[];
+  metadata?: any;
+  message: string;
 }

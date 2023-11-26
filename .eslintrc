@@ -7,21 +7,27 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended"
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:react-hooks/recommended",
+    "eslint-config-prettier"
   ],
-  "ignorePatterns": [
-    "dist",
-    ".eslintrc.cjs"
-  ],
+  "ignorePatterns": ["dist", "build", ".eslintrc.cjs", "node_modules", "*.d.ts", "*.env"],
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "react-refresh"
-  ],
+  "plugins": ["react-refresh"],
   "rules": {
     "react-refresh/only-export-components": [
       "warn",
       {
         "allowConstantExport": true
+      }
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": true,
+        "argsIgnorePattern": "^_"
       }
     ],
     "@typescript-eslint/no-explicit-any": "off"

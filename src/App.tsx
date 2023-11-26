@@ -4,19 +4,19 @@ import AlertTemplate from 'react-alert-template-basic';
 import createRouters from './routes';
 
 const options = {
-	timeout: 5000,
-	position: positions.TOP_RIGHT,
+  timeout: 5000,
+  position: positions.TOP_RIGHT,
 };
 
 const App = () => {
-	return (
-		<Provider template={AlertTemplate} {...options}>
-			<RouterProvider
-				router={createRouters()}
-				fallbackElement={<p>Loading...</p>}
-			/>
-		</Provider>
-	);
+  return (
+    <Provider template={AlertTemplate} {...options}>
+      <RouterProvider
+        router={createRouters()}
+        fallbackElement={<p>Loading...</p>}
+      />
+    </Provider>
+  );
 };
 
 export default App;
