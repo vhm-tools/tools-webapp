@@ -1,11 +1,11 @@
 repo_name: vhm-tools/tools-webapp
-report_id: bca44bebd4c98462208e26ff49fb92cf
+report_id: d6d109dda9bf935118f991268b6b19bb
 repo_type: Public
-timestamp: '2023-11-18T04:48:49+00:00'
+timestamp: '2023-12-14T13:14:13+00:00'
 requested_by: vhm205
 provider: github
 branch: dev
-detected_tools_count: 25
+detected_tools_count: 36
 tools:
 - name: CSS 3
   description: The latest evolution of the Cascading Style Sheets language
@@ -59,6 +59,18 @@ tools:
   detection_source: package.json
   last_updated_by: Vũ Huỳnh Minh
   last_updated_on: 2023-09-19 04:38:13.000000000 Z
+- name: PostCSS
+  description: Transform CSS with JS plugins
+  website_url: https://github.com/postcss/postcss
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: CSS Pre-processors / Extensions
+  image_url: https://img.stackshare.io/service/3339/rlFcjEdI.png
+  detection_source: package.json
+  last_updated_by: Vũ Huỳnh Minh
+  last_updated_on: 2023-09-19 04:38:13.000000000 Z
 - name: React
   description: A JavaScript library for building user interfaces
   website_url: https://reactjs.org/
@@ -69,10 +81,10 @@ tools:
   category: Libraries
   sub_category: Javascript UI Libraries
   image_url: https://img.stackshare.io/service/1020/OYIaJ1KK.png
-  detection_source_url: yarn.lock
+  detection_source_url: https://github.com/vhm-tools/tools-webapp/blob/dev/package.json
   detection_source: package.json
   last_updated_by: Vũ Huỳnh Minh
-  last_updated_on: 2023-09-19 04:38:13.000000000 Z
+  last_updated_on: 2023-11-26 05:19:46.000000000 Z
 - name: React Router
   description: A complete routing solution for React.js
   website_url: https://github.com/rackt/react-router
@@ -83,7 +95,19 @@ tools:
   category: Libraries
   sub_category: JavaScript Framework Components
   image_url: https://img.stackshare.io/service/3350/8261421.png
-  detection_source_url: yarn.lock
+  detection_source_url: https://github.com/vhm-tools/tools-webapp/blob/dev/package.json
+  detection_source: package.json
+  last_updated_by: Vũ Huỳnh Minh
+  last_updated_on: 2023-11-26 05:19:46.000000000 Z
+- name: Tailwind CSS
+  description: A utility-first CSS framework for rapid UI development
+  website_url: https://tailwindcss.com
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Front-End Frameworks
+  image_url: https://img.stackshare.io/service/8158/default_660b7c41c3ba489cb581eec89c04655404258c19.png
   detection_source: package.json
   last_updated_by: Vũ Huỳnh Minh
   last_updated_on: 2023-09-19 04:38:13.000000000 Z
@@ -96,9 +120,9 @@ tools:
   category: Build, Test, Deploy
   sub_category: Code Review
   image_url: https://img.stackshare.io/service/3337/Q4L7Jncy.jpg
-  detection_source: package.json
+  detection_source: ".eslintrc"
   last_updated_by: Vũ Huỳnh Minh
-  last_updated_on: 2023-09-19 04:38:13.000000000 Z
+  last_updated_on: 2023-10-10 02:23:55.000000000 Z
 - name: Git
   description: Fast, scalable, distributed revision control system
   website_url: http://git-scm.com/
@@ -108,15 +132,30 @@ tools:
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
   detection_source: Repo Metadata
-- name: Yarn
-  description: A new package manager for JavaScript
-  website_url: https://yarnpkg.com/
+- name: Prettier
+  description: 'Prettier is an opinionated code formatter. '
+  website_url: https://prettier.io/
+  version: 3.1.0
+  license: MIT
   open_source: true
   hosted_saas: false
   category: Build, Test, Deploy
-  sub_category: Front End Package Manager
-  image_url: https://img.stackshare.io/service/5848/44mC-kJ3.jpg
-  detection_source: yarn.lock
+  sub_category: Code Review
+  image_url: https://img.stackshare.io/service/7035/default_66f265943abed56bcdbfca1c866a4261b1fbb063.jpg
+  detection_source_url: https://github.com/vhm-tools/tools-webapp/blob/dev/package.json
+  detection_source: package.json
+  last_updated_by: Vũ Huỳnh Minh
+  last_updated_on: 2023-11-26 05:29:54.000000000 Z
+- name: Vite
+  description: Native-ESM powered web dev build tool
+  website_url: https://vitejs.dev/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: JS Build Tools / JS Task Runners
+  image_url: https://img.stackshare.io/service/21547/default_1aeac791cde11ff66cc0b20dcc6144eeb185c905.png
+  detection_source: package.json
   last_updated_by: Vũ Huỳnh Minh
   last_updated_on: 2023-09-19 04:38:13.000000000 Z
 - name: npm
@@ -130,6 +169,15 @@ tools:
   detection_source: package.json
   last_updated_by: Vũ Huỳnh Minh
   last_updated_on: 2023-09-19 04:38:13.000000000 Z
+- name: DaisyUI
+  description: A customizable plugin for Tailwind which adds components
+  website_url: https://daisyui.com/
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/48516/default_dfb71fd0f2693f4157a1cc9ce86a7aa439068eb6.png
+  detection_source: package.json
+  last_updated_by: Vũ Huỳnh Minh
+  last_updated_on: 2023-09-19 04:38:13.000000000 Z
 - name: Formik
   description: Build forms in React
   website_url: https://jaredpalmer.com/formik/
@@ -140,7 +188,7 @@ tools:
   category: Application Utilities
   sub_category: Web Forms
   image_url: https://img.stackshare.io/service/8846/preview.png
-  detection_source_url: yarn.lock
+  detection_source_url: https://github.com/vhm-tools/tools-webapp/blob/dev/package.json
   detection_source: package.json
   last_updated_by: Vũ Huỳnh Minh
   last_updated_on: 2023-09-19 04:38:13.000000000 Z
@@ -153,6 +201,40 @@ tools:
   detection_source: index.html
   last_updated_by: Vũ Huỳnh Minh
   last_updated_on: 2023-09-19 04:38:13.000000000 Z
+- name: Shell
+  description: A shell is a text-based terminal, used for manipulating programs and
+    files. Shell scripts typically manage program execution.
+  website_url: https://en.wikipedia.org/wiki/Shell_script
+  open_source: false
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/4631/default_c2062d40130562bdc836c13dbca02d318205a962.png
+  detection_source: Repo Metadata
+- name: husky
+  website_url: https://github.com/typicode/husky
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/9527/5502029.jpeg
+  detection_source: package.json
+  last_updated_by: Vũ Huỳnh Minh
+  last_updated_on: 2023-11-26 05:32:55.000000000 Z
+- name: lint-staged
+  website_url: https://github.com/okonet/lint-staged
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/10577/11071.jpeg
+  detection_source: package.json
+  last_updated_by: Vũ Huỳnh Minh
+  last_updated_on: 2023-11-26 05:29:54.000000000 Z
+- name: yup
+  website_url: https://github.com/jquense/yup
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/10756/339286.png
+  detection_source: package.json
+  last_updated_by: Vũ Huỳnh Minh
+  last_updated_on: 2023-09-19 04:38:13.000000000 Z
 - name: "@types/node"
   description: TypeScript definitions for Node.js
   package_url: https://www.npmjs.com/@types/node
@@ -163,24 +245,24 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/15809/default_5e5e8ac63beda29f31f1844df64d4b8247570a66.png
-  detection_source_url: yarn.lock
+  detection_source_url: https://github.com/vhm-tools/tools-webapp/blob/dev/package.json
   detection_source: package.json
   last_updated_by: Vũ Huỳnh Minh
   last_updated_on: 2023-09-19 04:38:13.000000000 Z
 - name: "@types/react"
   description: TypeScript definitions for React
   package_url: https://www.npmjs.com/@types/react
-  version: 18.2.20
+  version: 18.2.15
   license: MIT
   open_source: true
   hosted_saas: false
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/15894/default_1d65e37e65b7f80761374f0202776043277d505d.png
-  detection_source_url: yarn.lock
+  detection_source_url: https://github.com/vhm-tools/tools-webapp/blob/dev/package.json
   detection_source: package.json
   last_updated_by: Vũ Huỳnh Minh
-  last_updated_on: 2023-09-19 04:38:13.000000000 Z
+  last_updated_on: 2023-11-26 05:19:46.000000000 Z
 - name: "@types/react-dom"
   description: TypeScript definitions for React
   package_url: https://www.npmjs.com/@types/react-dom
@@ -191,38 +273,66 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/15946/default_54b691c123fc8979741e800e4dcd3936c0f3b246.png
-  detection_source_url: yarn.lock
+  detection_source_url: https://github.com/vhm-tools/tools-webapp/blob/dev/package.json
   detection_source: package.json
   last_updated_by: Vũ Huỳnh Minh
-  last_updated_on: 2023-09-19 04:38:13.000000000 Z
+  last_updated_on: 2023-11-26 05:19:46.000000000 Z
 - name: "@typescript-eslint/eslint-plugin"
   description: TypeScript plugin for ESLint
   package_url: https://www.npmjs.com/@typescript-eslint/eslint-plugin
-  version: 6.4.0
+  version: 6.0.0
   license: MIT
   open_source: true
   hosted_saas: false
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/15982/default_8b5680d4e916298d08363c291a0d6e34c07ceb15.png
-  detection_source_url: yarn.lock
+  detection_source_url: https://github.com/vhm-tools/tools-webapp/blob/dev/package.json
   detection_source: package.json
   last_updated_by: Vũ Huỳnh Minh
-  last_updated_on: 2023-09-19 04:38:13.000000000 Z
+  last_updated_on: 2023-11-26 05:29:54.000000000 Z
 - name: "@typescript-eslint/parser"
   description: An ESLint custom parser which leverages TypeScript ESTree
   package_url: https://www.npmjs.com/@typescript-eslint/parser
-  version: 6.4.0
+  version: 6.0.0
   license: BSD-2-Clause
   open_source: true
   hosted_saas: false
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/15980/default_732016a20524708efe7a4c77497fe9bfeea19ba6.png
-  detection_source_url: yarn.lock
+  detection_source_url: https://github.com/vhm-tools/tools-webapp/blob/dev/package.json
   detection_source: package.json
   last_updated_by: Vũ Huỳnh Minh
-  last_updated_on: 2023-09-19 04:38:13.000000000 Z
+  last_updated_on: 2023-11-26 05:29:54.000000000 Z
+- name: classnames
+  description: A simple utility for conditionally joining classNames together
+  package_url: https://www.npmjs.com/classnames
+  version: 2.3.2
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15942/default_4040fefea2f98006727f63d042275b96a275ab2d.png
+  detection_source_url: https://github.com/vhm-tools/tools-webapp/blob/dev/package.json
+  detection_source: package.json
+  last_updated_by: Vũ Huỳnh Minh
+  last_updated_on: 2023-10-21 10:05:09.000000000 Z
+- name: eslint-config-prettier
+  description: Turns off all rules that are unnecessary or might conflict with Prettier
+  package_url: https://www.npmjs.com/eslint-config-prettier
+  version: 9.0.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15879/default_0b10af8ca19c215f781dc07442e75bdc831089d0.png
+  detection_source_url: https://github.com/vhm-tools/tools-webapp/blob/dev/package.json
+  detection_source: package.json
+  last_updated_by: Vũ Huỳnh Minh
+  last_updated_on: 2023-11-26 05:29:54.000000000 Z
 - name: eslint-plugin-react-hooks
   description: ESLint rules for React Hooks
   package_url: https://www.npmjs.com/eslint-plugin-react-hooks
@@ -233,10 +343,10 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/16149/default_1f3a2fc7d882e29a43394ecdf491b8989ea3f0fa.png
-  detection_source_url: yarn.lock
+  detection_source_url: https://github.com/vhm-tools/tools-webapp/blob/dev/package.json
   detection_source: package.json
   last_updated_by: Vũ Huỳnh Minh
-  last_updated_on: 2023-09-19 04:38:13.000000000 Z
+  last_updated_on: 2023-11-26 05:29:54.000000000 Z
 - name: js-cookie
   description: A simple, lightweight JavaScript API for handling cookies
   package_url: https://www.npmjs.com/js-cookie
@@ -247,7 +357,7 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/16441/default_89ba91277e3434b03295bb11d22736632df1d04f.png
-  detection_source_url: yarn.lock
+  detection_source_url: https://github.com/vhm-tools/tools-webapp/blob/dev/package.json
   detection_source: package.json
   last_updated_by: Vũ Huỳnh Minh
   last_updated_on: 2023-09-19 04:38:13.000000000 Z
@@ -261,31 +371,10 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/16082/default_924b66c04aa848a4028c1a5753a23dae0f835f86.png
-  detection_source_url: yarn.lock
+  detection_source_url: https://github.com/vhm-tools/tools-webapp/blob/dev/package.json
   detection_source: package.json
   last_updated_by: Vũ Huỳnh Minh
   last_updated_on: 2023-09-19 04:38:13.000000000 Z
-- name: postcss
-  description: Tool for transforming styles with JS plugins
-  package_url: https://www.npmjs.com/postcss
-  version: 8.4.29
-  license: MIT
-  open_source: true
-  hosted_saas: false
-  category: Libraries
-  sub_category: npm Packages
-  image_url: https://img.stackshare.io/package/16012/default_7a88bebb451873cc63bd99007de5bd3bb8ef85de.png
-  detection_source_url: yarn.lock
-  detection_source: package.json
-  last_updated_by: Vũ Huỳnh Minh
-  last_updated_on: 2023-09-19 04:38:13.000000000 Z
-  vulnerabilities:
-  - name: PostCSS line return parsing error
-    cve_id: CVE-2023-44270
-    cve_url: https://github.com/advisories/GHSA-7fh5-64p2-3v2j
-    detected_date: Oct 4
-    severity: moderate
-    first_patched: 8.4.31
 - name: react-dom
   description: React package for working with the DOM
   package_url: https://www.npmjs.com/react-dom
@@ -296,10 +385,24 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/15808/default_14fd11531839d935f920b6d55bd6f3528c890ad7.png
-  detection_source_url: yarn.lock
+  detection_source_url: https://github.com/vhm-tools/tools-webapp/blob/dev/package.json
   detection_source: package.json
   last_updated_by: Vũ Huỳnh Minh
-  last_updated_on: 2023-09-19 04:38:13.000000000 Z
+  last_updated_on: 2023-11-26 05:19:46.000000000 Z
+- name: react-icons
+  description: SVG React icons of popular icon packs using ES6 imports
+  package_url: https://www.npmjs.com/react-icons
+  version: 4.11.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16909/default_7b9968788548874538c601457e8dcd9c74bd2051.png
+  detection_source_url: https://github.com/vhm-tools/tools-webapp/blob/dev/package.json
+  detection_source: package.json
+  last_updated_by: Vũ Huỳnh Minh
+  last_updated_on: 2023-11-26 05:19:46.000000000 Z
 - name: react-router-dom
   description: DOM bindings for React Router
   package_url: https://www.npmjs.com/react-router-dom
@@ -310,10 +413,10 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/16025/default_e25d1fbb04a118c79fb444294461417342bd03bf.png
-  detection_source_url: yarn.lock
+  detection_source_url: https://github.com/vhm-tools/tools-webapp/blob/dev/package.json
   detection_source: package.json
   last_updated_by: Vũ Huỳnh Minh
-  last_updated_on: 2023-09-19 04:38:13.000000000 Z
+  last_updated_on: 2023-11-26 05:19:46.000000000 Z
 - name: tailwindcss
   description: A utility-first CSS framework for rapidly building custom user interfaces
   package_url: https://www.npmjs.com/tailwindcss
@@ -324,7 +427,27 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/17398/default_2cd7ed1c123f2fca074a6f4b16c4e73d5bfe82be.png
-  detection_source_url: yarn.lock
+  detection_source_url: https://github.com/vhm-tools/tools-webapp/blob/dev/package.json
   detection_source: package.json
   last_updated_by: Vũ Huỳnh Minh
   last_updated_on: 2023-09-19 04:38:13.000000000 Z
+- name: vite
+  description: Native-ESM powered web dev build tool
+  package_url: https://www.npmjs.com/vite
+  version: 4.4.5
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/npm/image.png
+  detection_source_url: https://github.com/vhm-tools/tools-webapp/blob/dev/package.json
+  detection_source: package.json
+  last_updated_by: Vũ Huỳnh Minh
+  last_updated_on: 2023-09-19 04:38:13.000000000 Z
+  vulnerabilities:
+  - name: Vite XSS vulnerability in `server.transformIndexHtml` via URL payload
+    cve_id: CVE-2023-49293
+    cve_url: https://github.com/advisories/GHSA-92r3-m2mg-pj97
+    detected_date: Dec 6
+    severity: moderate
+    first_patched: 4.4.12
