@@ -26,7 +26,7 @@ export class HttpRequest implements IHttpRequest {
     path: string,
     init?: RequestInit,
     config: IExtraConfig = { addVersion: true },
-  ): Promise<IHttpResponse<T>> {
+  ): Promise<IHttpResponse<T> | Response> {
     const { baseUrl, version, headers } = this.config.server;
     const token = Cookies.get('token');
 
@@ -34,8 +34,8 @@ export class HttpRequest implements IHttpRequest {
       ? `${baseUrl}/${version}/${path}`
       : `${baseUrl}/${path}`;
 
-    return fetch(url, {
-      credentials: this.config.credentials as RequestCredentials,
+    const res = await fetch(url, {
+      credentials: this.config.credentials,
       ...init,
       headers: {
         ...headers,
@@ -44,12 +44,13 @@ export class HttpRequest implements IHttpRequest {
           Authorization: `Bearer ${token}`,
         }),
       },
-    }).then((res) => {
-      const responseType = res.headers.get('content-type') || '';
-      if (responseType.includes('application/json')) {
-        return res.json();
-      }
-      return res;
     });
+
+    const responseType = res.headers.get('content-type') || '';
+    if (responseType.includes('application/json')) {
+      const resJson: IHttpResponse<T> = await res.json();
+      return resJson;
+    }
+    return res;
   }
 }

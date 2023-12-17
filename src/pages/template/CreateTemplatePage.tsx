@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { FormikHelpers, useFormik } from 'formik';
 import { useAlert } from 'react-alert';
 
@@ -11,8 +12,26 @@ import { HttpRequest } from '@/apis/http';
 import { ICreateTemplate } from '@/types';
 import { createTemplateSchema } from '@/validations';
 import { Toolbar, Workflow } from './components';
+import { Node } from 'reactflow';
+import { v4 as uuidv4 } from 'uuid';
+import { AiOutlineThunderbolt } from 'react-icons/ai';
+
+const initialNodes: Node[] = [
+  {
+    id: uuidv4(),
+    type: 'workflowNode',
+    position: { x: 0, y: 0 },
+    data: {
+      id: 'trigger',
+      label: 'Workflow Trigger',
+      icon: <AiOutlineThunderbolt size={18} />,
+    },
+  },
+];
 
 export const CreateTemplatePage = () => {
+  const [nodes, setNodes] = useState<Node[]>(initialNodes);
+
   const alert = useAlert();
   const http = new HttpRequest();
 
@@ -21,14 +40,21 @@ export const CreateTemplatePage = () => {
     { resetForm }: FormikHelpers<ICreateTemplate>,
   ) => {
     try {
-      const response = await http.fetch<ICreateTemplate>('templates/create', {
+      if (nodes.length) {
+        values.steps = nodes.map((node) => ({
+          id: node.data.id as string,
+          label: node.data.label as string,
+        }));
+      }
+
+      const response = await http.fetch<ICreateTemplate>('templates', {
         method: 'POST',
         body: JSON.stringify(values),
       });
       resetForm();
 
       if (response.statusCode !== 200) {
-        return alert.error('Create template failed');
+        return alert.error(response.message);
       }
 
       alert.success('Create template successful');
@@ -40,6 +66,7 @@ export const CreateTemplatePage = () => {
   const initialValues: ICreateTemplate = {
     name: '',
     description: '',
+    steps: [],
   };
 
   const formik = useFormik({
@@ -111,7 +138,7 @@ export const CreateTemplatePage = () => {
           </p>
         </header>
 
-        <Workflow />
+        <Workflow nodes={nodes} setNodes={setNodes} />
       </Card>
     </div>
   );
