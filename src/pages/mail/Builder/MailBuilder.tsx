@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { CodeEditor } from '@/components';
-import { sendMail } from '@/apis';
 
 export const MailBuilder = () => {
   const divEl = useRef<HTMLDivElement | null>(null);
@@ -9,18 +8,18 @@ export const MailBuilder = () => {
     console.log({ value });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     try {
-      const resp = await sendMail({
-        provider: 'SEND_GRID',
-        data: {
-          to: 'minhvh@codelight.co',
-          subject: 'This is subject',
-          text: 'This is text',
-          html: divEl.current?.getValue(),
-        },
-      });
-      console.log({ resp });
+      // const resp = await sendMail({
+      //   provider: EMailProvider.SEND_GRID,
+      //   data: {
+      //     to: 'minhvh@codelight.co',
+      //     subject: 'This is subject',
+      //     text: 'This is text',
+      //     html: divEl.current?.getValue(),
+      //   },
+      // });
+      console.log('Send Mail');
     } catch (error) {
       console.error(error);
     }

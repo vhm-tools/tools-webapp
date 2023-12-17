@@ -3,8 +3,8 @@ import { Formik, FormikProps } from 'formik';
 
 interface Props<V> {
   initialValues: V;
-  onSubmit: (values: V) => void;
-  callback: (formikProps: FormikProps<V>) => ReactNode;
+  onSubmit: (_values: V) => void;
+  callback: (_formikProps: FormikProps<V>) => ReactNode;
 }
 
 export const CustomForm = <V extends object>(

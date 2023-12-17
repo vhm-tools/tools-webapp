@@ -11,8 +11,20 @@
     "plugin:react-hooks/recommended",
     "eslint-config-prettier"
   ],
-  "ignorePatterns": ["dist", "build", ".eslintrc.cjs", "node_modules", "*.d.ts", "*.env"],
+  "ignorePatterns": [
+    "dist",
+    "build",
+    ".eslintrc.cjs",
+    "node_modules",
+    "*.d.ts",
+    "*.env",
+    "tailwind.config.ts",
+    "vite.config.ts"
+  ],
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.json"
+  },
   "plugins": ["react-refresh"],
   "rules": {
     "react-refresh/only-export-components": [
@@ -22,7 +34,7 @@
       }
     ],
     "no-unused-vars": [
-      "error",
+      "off",
       {
         "vars": "all",
         "args": "after-used",
@@ -30,6 +42,11 @@
         "argsIgnorePattern": "^_"
       }
     ],
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-argument": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-unsafe-call": "off"
   }
 }

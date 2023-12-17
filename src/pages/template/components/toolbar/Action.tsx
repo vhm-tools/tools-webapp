@@ -1,13 +1,14 @@
-import { FC } from 'react';
+import { FC, HTMLAttributes } from 'react';
 
-export const Action: FC = () => {
+interface Props extends HTMLAttributes<HTMLDivElement> {
+  name: string;
+}
+
+export const Action: FC<Props> = ({ name, ...props }) => {
   return (
     <>
-      <div className="text-xl font-bold text-navy-700 dark:text-white mb-3">
-        Actions:
-      </div>
-      <div className="flex flex-col text-center">
-        <div className="p-3 cursor-move bg-gray-100 mb-2">Delay</div>
+      <div className="p-3 cursor-move bg-gray-100 mb-2" {...props}>
+        {name}
       </div>
     </>
   );

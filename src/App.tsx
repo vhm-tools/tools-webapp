@@ -1,6 +1,7 @@
 import { RouterProvider } from 'react-router-dom';
 import { Provider, positions } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
+import { ReactFlowProvider } from 'reactflow';
 import createRouters from './routes';
 
 const options = {
@@ -11,10 +12,12 @@ const options = {
 const App = () => {
   return (
     <Provider template={AlertTemplate} {...options}>
-      <RouterProvider
-        router={createRouters()}
-        fallbackElement={<p>Loading...</p>}
-      />
+      <ReactFlowProvider>
+        <RouterProvider
+          router={createRouters()}
+          fallbackElement={<p>Loading...</p>}
+        />
+      </ReactFlowProvider>
     </Provider>
   );
 };

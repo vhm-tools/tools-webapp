@@ -42,6 +42,9 @@ export const Navbar: FC<Props> = (props) => {
       )
       .then(() => {
         navigate('/auth/login');
+      })
+      .catch((err) => {
+        console.error(err);
       });
   };
 

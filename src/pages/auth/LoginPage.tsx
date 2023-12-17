@@ -15,6 +15,7 @@ import { Checkbox } from '@/components';
 import { InputField } from '@/components/fields';
 
 import { HttpRequest } from '@/apis/http';
+import { IHttpResponse } from '@/types';
 
 type InitialValuesType = {
   account: string;
@@ -25,7 +26,7 @@ export const LoginPage: FC = () => {
   const alert = useAlert();
   const http = new HttpRequest();
 
-  const handleLoginGitHub = async () => {
+  const handleLoginGitHub = () => {
     alert.info('Logging in...');
     const url = `${import.meta.env.VITE_API_URL}/auth/github`;
     window.open(url, '_self');
@@ -45,7 +46,7 @@ export const LoginPage: FC = () => {
         { addVersion: false },
       );
 
-      const { metadata } = response;
+      const { metadata } = response as IHttpResponse;
       if (metadata.error) {
         return alert.error(metadata.message);
       }

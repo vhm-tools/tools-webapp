@@ -13,10 +13,13 @@ export interface IExtraConfig {
 
 export interface IHttpRequest {
   config: IHttpRequestConfig;
-  fetch: (path: string, init?: RequestInit) => Promise<any>;
+  fetch: (
+    _path: string,
+    _init?: RequestInit,
+  ) => Promise<Response | IHttpResponse>;
 }
 
-export interface IHttpResponse<T> {
+export interface IHttpResponse<T = any> {
   statusCode: number;
   data: T | T[];
   metadata?: any;
