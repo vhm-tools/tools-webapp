@@ -48,7 +48,7 @@ Full tech stack [here](/techstack.md)
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [vhm-tools/tools-webapp](https://github.com/vhm-tools/tools-webapp)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|36<br/>Tools used|12/14/23 <br/>Report generated|
+|39<br/>Tools used|01/05/24 <br/>Report generated|
 |------|------|
 </div>
 
@@ -241,9 +241,9 @@ Full tech stack [here](/techstack.md)
 </table>
 
 
-## <img src='https://img.stackshare.io/group.svg' /> Open source packages (15)</h2>
+## <img src='https://img.stackshare.io/group.svg' /> Open source packages (18)</h2>
 
-## <img width='24' height='24' src='https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png'/> npm (15)
+## <img width='24' height='24' src='https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png'/> npm (18)
 
 |NAME|VERSION|LAST UPDATED|LAST UPDATED BY|LICENSE|VULNERABILITIES|
 |:------|:------|:------|:------|:------|:------|
@@ -255,13 +255,16 @@ Full tech stack [here](/techstack.md)
 |[classnames](https://www.npmjs.com/classnames)|v2.3.2|10/21/23|Vũ Huỳnh Minh |MIT|N/A|
 |[eslint-config-prettier](https://www.npmjs.com/eslint-config-prettier)|v9.0.0|11/26/23|Vũ Huỳnh Minh |MIT|N/A|
 |[eslint-plugin-react-hooks](https://www.npmjs.com/eslint-plugin-react-hooks)|v4.6.0|11/26/23|Vũ Huỳnh Minh |MIT|N/A|
+|[husky](https://www.npmjs.com/husky)|v8.0.3|11/26/23|Vũ Huỳnh Minh |MIT|N/A|
 |[js-cookie](https://www.npmjs.com/js-cookie)|v3.0.5|09/19/23|Vũ Huỳnh Minh |MIT|N/A|
+|[lint-staged](https://www.npmjs.com/lint-staged)|v15.1.0|11/26/23|Vũ Huỳnh Minh |MIT|N/A|
 |[path](https://www.npmjs.com/path)|v0.12.7|09/19/23|Vũ Huỳnh Minh |MIT|N/A|
 |[react-dom](https://www.npmjs.com/react-dom)|v18.2.0|11/26/23|Vũ Huỳnh Minh |MIT|N/A|
 |[react-icons](https://www.npmjs.com/react-icons)|v4.11.0|11/26/23|Vũ Huỳnh Minh |MIT|N/A|
 |[react-router-dom](https://www.npmjs.com/react-router-dom)|v6.15.0|11/26/23|Vũ Huỳnh Minh |MIT|N/A|
 |[tailwindcss](https://www.npmjs.com/tailwindcss)|v3.3.3|09/19/23|Vũ Huỳnh Minh |MIT|N/A|
 |[vite](https://www.npmjs.com/vite)|v4.4.5|09/19/23|Vũ Huỳnh Minh |N/A|[CVE-2023-49293](https://github.com/advisories/GHSA-92r3-m2mg-pj97) (Moderate)|
+|[yup](https://www.npmjs.com/yup)|v1.3.2|09/19/23|Vũ Huỳnh Minh |MIT|N/A|
 
 <br/>
 <div align='center'>
