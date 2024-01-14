@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { FC } from 'react';
 import { Link, RouteObject, useLocation } from 'react-router-dom';
 import cn from 'classnames';
 
@@ -14,23 +14,18 @@ type Props = {
 
 const SidebarItem: FC<Props> = ({ name, path, icon, children }) => {
   const location = useLocation();
-  const isActive = useMemo(() => {
-    return location.pathname.includes(path);
-  }, [location.pathname, path]);
+  const isActive = location.pathname.includes(path);
 
   return (
     <li
-      className={cn(
-        'my-[3px] active rounded-xl font-bold dark:text-white text-black',
-        {
-          'dark:text-white': isActive,
-          'text-white bg-primary': isActive && !children?.length,
-        },
-      )}
+      className={cn('my-[3px] active rounded-xl font-bold', {
+        'bg-primary': isActive && !children?.length,
+      })}
+      style={{ color: isActive ? 'white' : 'black' }}
     >
       {children?.length ? (
         <details open>
-          <summary className="px-4 py-4">
+          <summary className="px-4 py-4 text-black">
             {icon ? icon : <DashIcon />}
             {name}
           </summary>
@@ -46,7 +41,13 @@ const SidebarItem: FC<Props> = ({ name, path, icon, children }) => {
           </ul>
         </details>
       ) : (
-        <Link to={path} className="px-4 py-4">
+        <Link
+          to={path}
+          className={cn('px-4 py-4', {
+            'bg-primary': isActive,
+          })}
+          style={{ color: isActive ? 'white' : 'black' }}
+        >
           {icon ? icon : <DashIcon />} {name}
         </Link>
       )}

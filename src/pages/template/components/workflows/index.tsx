@@ -41,10 +41,7 @@ export const Workflow: FC<Props> = ({ nodes, setNodes }) => {
 
   const onNodesChange = useCallback(
     (changes: NodeChange[]) => {
-      setNodes((nds) => {
-        console.log({ changes, nds });
-        return applyNodeChanges(changes, nds);
-      });
+      setNodes((nds) => applyNodeChanges(changes, nds));
     },
     [setNodes],
   );

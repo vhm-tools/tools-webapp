@@ -1,5 +1,5 @@
 import { object, string } from 'yup';
-import { ICreateTemplate } from '@/types';
+import { ICreateTemplate } from '@/types/template';
 
 export const createTemplateSchema = object<ICreateTemplate>({
   name: string().min(2, 'Too Short!').required('Name is required'),

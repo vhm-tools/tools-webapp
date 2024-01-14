@@ -6,6 +6,8 @@ export * from './card';
 export * from './button';
 export * from './error';
 export * from './divider';
+export * from './loader';
+export * from './table';
 
 export * from './CustomForm';
 export * from './CodeEditor';

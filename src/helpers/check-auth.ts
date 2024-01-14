@@ -1,17 +1,17 @@
 import { LoaderFunctionArgs, redirect } from 'react-router-dom';
 import { HttpRequest } from '@/apis/http';
+import { IHttpResponse } from '@/types/http';
+import { HttpMethod, HttpStatusCode } from '@/constants/api';
 
 export const checkAuthLoader = async ({ request }: LoaderFunctionArgs) => {
   const http = new HttpRequest();
-  const { statusCode } = await http.fetch(
-    'auth/check',
-    {
-      method: 'GET',
-    },
-    { addVersion: false },
-  );
+  const response = await http.fetch('auth/check', {
+    method: HttpMethod.GET,
+  });
 
-  if (statusCode === 200) {
+  const { statusCode } = response as IHttpResponse;
+
+  if (statusCode === HttpStatusCode.OK) {
     return null;
   }
 

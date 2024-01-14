@@ -15,7 +15,7 @@ import { Checkbox } from '@/components';
 import { InputField } from '@/components/fields';
 
 import { HttpRequest } from '@/apis/http';
-import { IHttpResponse } from '@/types';
+import { IHttpResponse } from '@/types/http';
 
 type InitialValuesType = {
   account: string;
