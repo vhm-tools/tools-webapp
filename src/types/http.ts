@@ -21,7 +21,13 @@ export interface IHttpRequest {
 
 export interface IHttpResponse<T = any> {
   statusCode: number;
-  data: T | T[];
+  code: string;
+  data: T;
   metadata?: any;
   message: string;
+}
+
+export interface IQueryRequest<Q> {
+  headers?: Record<string, any>;
+  query: Q;
 }

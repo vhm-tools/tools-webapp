@@ -12,10 +12,15 @@ const SidebarSubItem: FC<Props> = ({ name, path, isActive = false }) => {
   return (
     <li
       className={cn('my-[3px] rounded-xl', {
-        'text-white bg-primary': isActive,
+        'bg-primary': isActive,
       })}
+      style={{ color: isActive ? 'white' : 'black' }}
     >
-      <Link to={path} className="py-3">
+      <Link
+        to={path}
+        className="py-3"
+        style={{ color: isActive ? 'white' : 'black' }}
+      >
         {name}
       </Link>
     </li>

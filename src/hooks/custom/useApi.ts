@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { HttpRequest, IHttpRequest } from '@/apis/http';
+import { HttpRequest } from '@/apis/http';
+import { IHttpRequest } from '@/types/http';
 
 export const useApi = () => {
   const [http, setHttp] = useState<IHttpRequest>();

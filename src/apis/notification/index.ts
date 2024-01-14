@@ -1,5 +1,5 @@
 import { HttpRequest } from '../http';
-import { SendMailPayload } from '@/types';
+import { SendMailPayload } from '@/types/notification';
 
 export const sendMail = async (payload: SendMailPayload) => {
   const http = new HttpRequest();

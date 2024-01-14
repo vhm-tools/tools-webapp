@@ -1,17 +1,16 @@
 import { redirect } from 'react-router-dom';
 import { HttpRequest } from '@/apis/http';
+import { HttpMethod, HttpStatusCode } from '@/constants/api';
+import { IHttpResponse } from '@/types/http';
 
 export const checkNonAuthLoader = async () => {
   const http = new HttpRequest();
-  const { statusCode } = await http.fetch(
-    'auth/check',
-    {
-      method: 'GET',
-    },
-    { addVersion: false },
-  );
+  const response = await http.fetch('auth/check', {
+    method: HttpMethod.GET,
+  });
+  const { statusCode } = response as IHttpResponse;
 
-  if (statusCode === 401) {
+  if (statusCode === HttpStatusCode.UNAUTHORIZED) {
     return null;
   }
 

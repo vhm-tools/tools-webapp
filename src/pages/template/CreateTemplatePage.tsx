@@ -8,13 +8,15 @@ import { useAlert } from 'react-alert';
 import { Button, Card, ErrorMessage } from '@/components';
 import { InputField } from '@/components/fields';
 
-import { HttpRequest } from '@/apis/http';
-import { ICreateTemplate } from '@/types';
+import { ICreateTemplate } from '@/types/template';
 import { createTemplateSchema } from '@/validations';
 import { Toolbar, Workflow } from './components';
 import { Node } from 'reactflow';
 import { v4 as uuidv4 } from 'uuid';
 import { AiOutlineThunderbolt } from 'react-icons/ai';
+import { TemplateRepository } from '@/apis';
+
+const templateRepository = new TemplateRepository();
 
 const initialNodes: Node[] = [
   {
@@ -33,7 +35,6 @@ export const CreateTemplatePage = () => {
   const [nodes, setNodes] = useState<Node[]>(initialNodes);
 
   const alert = useAlert();
-  const http = new HttpRequest();
 
   const handleSubmit = async (
     values: ICreateTemplate,
@@ -41,22 +42,21 @@ export const CreateTemplatePage = () => {
   ) => {
     try {
       if (nodes.length) {
+        nodes.shift();
         values.steps = nodes.map((node) => ({
           id: node.data.id as string,
           label: node.data.label as string,
         }));
       }
 
-      const response = await http.fetch<ICreateTemplate>('templates', {
-        method: 'POST',
-        body: JSON.stringify(values),
-      });
+      const response = await templateRepository.createTemplate(values);
       resetForm();
 
       if (response.statusCode !== 200) {
         return alert.error(response.message);
       }
 
+      setNodes(initialNodes);
       alert.success('Create template successful');
     } catch (error: any) {
       alert.error(error.message);

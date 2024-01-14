@@ -3,36 +3,32 @@ import {
   IHttpRequestConfig,
   IHttpRequest,
   IHttpResponse,
-} from '@/types';
+} from '@/types/http';
 import Cookies from 'js-cookie';
 
-export class HttpRequest implements IHttpRequest {
-  config: IHttpRequestConfig;
+export const defaultConfig: IHttpRequestConfig = {
+  server: {
+    baseUrl: import.meta.env.VITE_API_URL || 'http://localhost:1515/api',
+    version: import.meta.env.VITE_API_VERSION || 'v1',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  },
+  credentials: 'include', // same-origin
+};
 
-  constructor() {
-    this.config = {
-      server: {
-        baseUrl: import.meta.env.VITE_API_URL || 'http://localhost:1515/api',
-        version: import.meta.env.VITE_API_VERSION || 'v1',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      },
-      credentials: 'include', // same-origin
-    };
-  }
+export class HttpRequest implements IHttpRequest {
+  readonly config: IHttpRequestConfig = defaultConfig;
 
   async fetch<T>(
     path: string,
     init?: RequestInit,
-    config: IExtraConfig = { addVersion: true },
+    config?: IExtraConfig,
   ): Promise<IHttpResponse<T> | Response> {
-    const { baseUrl, version, headers } = this.config.server;
+    const { baseUrl, headers } = this.config.server;
     const token = Cookies.get('token');
 
-    const url = config.addVersion
-      ? `${baseUrl}/${version}/${path}`
-      : `${baseUrl}/${path}`;
+    const url = `${baseUrl}/${path}`;
 
     const res = await fetch(url, {
       credentials: this.config.credentials,
@@ -44,6 +40,7 @@ export class HttpRequest implements IHttpRequest {
           Authorization: `Bearer ${token}`,
         }),
       },
+      ...config,
     });
 
     const responseType = res.headers.get('content-type') || '';

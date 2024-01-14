@@ -1,7 +1,8 @@
-import { FC, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Dropdown } from '@/components';
 import { HttpRequest } from '@/apis/http';
+import { convertFirstUpperCase, removeFalsyInArray } from '@/utils';
 
 /**
  * Assets
@@ -23,23 +24,35 @@ type Props = {
   secondary?: boolean | string;
 };
 
-export const Navbar: FC<Props> = (props) => {
-  const { onOpenSidenav } = props;
+export const Navbar: FC<Props> = ({ onOpenSidenav }) => {
   const http = new HttpRequest();
   const navigate = useNavigate();
   const location = useLocation();
 
   const [darkmode, setDarkmode] = useState(false);
 
+  const [breadcrumbs, currentPath] = useMemo(() => {
+    let pathnames = location.pathname.split('/');
+    pathnames = removeFalsyInArray<string>(pathnames);
+
+    if (!pathnames.length) return [[], ''];
+
+    if (pathnames.length === 1) {
+      pathnames[0] = convertFirstUpperCase(pathnames[0]);
+      return [[], pathnames[0]];
+    }
+
+    const currentPath = pathnames.pop();
+    pathnames[0] = convertFirstUpperCase(pathnames[0]);
+
+    return [pathnames, currentPath];
+  }, [location.pathname]);
+
   const handleLogout = () => {
     http
-      .fetch(
-        'auth/logout',
-        {
-          method: 'GET',
-        },
-        { addVersion: false },
-      )
+      .fetch('auth/logout', {
+        method: 'GET',
+      })
       .then(() => {
         navigate('/auth/login');
       })
@@ -51,23 +64,17 @@ export const Navbar: FC<Props> = (props) => {
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
       <div className="ml-[6px]">
-        <div className="h-6 w-[224px] pt-1">
-          <a
-            className="text-sm font-normal text-navy-700 hover:underline dark:text-white dark:hover:text-white"
-            href=" "
-          >
-            Pages {location.pathname.split('/').join(' / ')}
-            {/* <span className="mx-1 text-sm text-navy-700 hover:text-navy-700 dark:text-white"> */}
-            {/* 	{' '} */}
-            {/* 	/{' '} */}
-            {/* </span> */}
-          </a>
-          {/* <Link */}
-          {/* 	className="text-sm font-normal capitalize text-navy-700 hover:underline dark:text-white dark:hover:text-white" */}
-          {/* 	to="#" */}
-          {/* > */}
-          {/* 	{brandText} */}
-          {/* </Link> */}
+        <div className="h-6 w-[224px] pt-1 mb-5">
+          <div className="text-sm font-normal breadcrumbs dark:text-white">
+            <ul>
+              {breadcrumbs.map((path) => (
+                <li key={path}>
+                  <a href=" ">{path}</a>
+                </li>
+              ))}
+              <li>{currentPath}</li>
+            </ul>
+          </div>
         </div>
         <p className="shrink text-[33px] capitalize text-navy-700 dark:text-white">
           <Link

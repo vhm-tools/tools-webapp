@@ -1,8 +1,13 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 import { checkAuthLoader, checkNonAuthLoader } from '@/helpers';
 import { AuthLayout, AdminLayout } from '@/layouts';
+
+/*
+ * Assets
+ */
 import { MdHome } from 'react-icons/md';
 import { FaUser } from 'react-icons/fa';
+import { IoSettings } from 'react-icons/io5';
 
 /**
  * Pages
@@ -54,10 +59,15 @@ export const routes = {
           },
           {
             path: 'list',
-            element: <></>,
             props: {
               name: 'List templates',
               path: 'template/list',
+            },
+            async lazy() {
+              const { ListTemplatePage } = await import('@/pages/template');
+              return {
+                Component: ListTemplatePage,
+              };
             },
           },
         ],
@@ -71,6 +81,13 @@ export const routes = {
         props: {
           name: 'User',
           icon: <FaUser className="h-5 w-5" />,
+        },
+      },
+      {
+        path: 'setting',
+        props: {
+          name: 'Settings',
+          icon: <IoSettings className="h-5 w-5" />,
         },
       },
       // End routes of /admin/
