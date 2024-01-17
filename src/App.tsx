@@ -11,7 +11,14 @@ const options = {
   position: positions.TOP_RIGHT,
 };
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchOnMount: 'always',
+    },
+  },
+});
 
 const App = () => {
   return (

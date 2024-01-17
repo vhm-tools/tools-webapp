@@ -8,6 +8,7 @@ import { AuthLayout, AdminLayout } from '@/layouts';
 import { MdHome } from 'react-icons/md';
 import { FaUser } from 'react-icons/fa';
 import { IoSettings } from 'react-icons/io5';
+import { LuWorkflow } from 'react-icons/lu';
 
 /**
  * Pages
@@ -74,6 +75,13 @@ export const routes = {
         props: {
           name: 'Template',
           icon: <MdHome className="h-6 w-6" />,
+        },
+      },
+      {
+        path: 'workflow',
+        props: {
+          name: 'Workflow',
+          icon: <LuWorkflow className="h-5 w-5" />,
         },
       },
       {

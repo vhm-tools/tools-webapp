@@ -19,7 +19,7 @@ export class TemplateRepository {
     this.apiPrefix = `${this.apiVersion}/templates`;
   }
 
-  async createTemplate(payload: ICreateTemplate): Promise<IHttpResponse> {
+  async create(payload: ICreateTemplate): Promise<IHttpResponse> {
     const response = await this.http.fetch(this.apiPrefix, {
       method: HttpMethod.POST,
       body: JSON.stringify(payload),
@@ -27,7 +27,14 @@ export class TemplateRepository {
     return response as IHttpResponse;
   }
 
-  async listTemplates(params: IListTemplateParams): Promise<IListTemplate> {
+  async delete(id: string): Promise<Response> {
+    const response = await this.http.fetch(`${this.apiPrefix}/${id}`, {
+      method: HttpMethod.DELETE,
+    });
+    return response as Response;
+  }
+
+  async getList(params: IListTemplateParams): Promise<IListTemplate> {
     const response = await this.http.fetch(
       `${this.apiPrefix}?${convertObjectToQuery(params.query)}`,
       {

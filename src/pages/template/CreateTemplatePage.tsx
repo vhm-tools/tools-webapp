@@ -15,6 +15,7 @@ import { Node } from 'reactflow';
 import { v4 as uuidv4 } from 'uuid';
 import { AiOutlineThunderbolt } from 'react-icons/ai';
 import { TemplateRepository } from '@/apis';
+import { HttpStatusCode } from '@/constants/api';
 
 const templateRepository = new TemplateRepository();
 
@@ -49,10 +50,10 @@ export const CreateTemplatePage = () => {
         }));
       }
 
-      const response = await templateRepository.createTemplate(values);
+      const response = await templateRepository.create(values);
       resetForm();
 
-      if (response.statusCode !== 200) {
+      if (response.statusCode !== HttpStatusCode.OK) {
         return alert.error(response.message);
       }
 

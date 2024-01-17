@@ -2,6 +2,7 @@ import { IPagination } from './pagination';
 import { IQueryRequest } from './http';
 
 export interface ITemplate {
+  _id: string;
   name: string;
   description: string;
   userId: string;
