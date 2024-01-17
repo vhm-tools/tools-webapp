@@ -1,16 +1,20 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { useAlert } from 'react-alert';
 import { ColumnDef } from '@tanstack/react-table';
 import { Card, Loader, Table } from '@/components';
+import { ModalConfirm } from '@/components/modal';
 import { useQueryTemplates } from '@/hooks/query/useTemplate';
 import { ITemplate } from '@/types/template';
+import { TemplateRepository } from '@/apis';
+import { HttpStatusCode } from '@/constants/api';
 
 import { MdEdit, MdDelete } from 'react-icons/md';
 import { FaPlay } from 'react-icons/fa';
 
 type TableMeta = {
-  handleDeleteTemplate: () => void;
-  handleUpdateTemplate: () => void;
-  handleTriggerTemplate: () => void;
+  handleDelete: (id: string) => void;
+  handleUpdate: () => void;
+  handleTrigger: (id: string) => void;
 };
 
 const columns: ColumnDef<ITemplate>[] = [
@@ -22,33 +26,29 @@ const columns: ColumnDef<ITemplate>[] = [
   {
     cell: (info) => info.getValue(),
     header: 'Description',
-    accessorKey: 'createdAt',
+    accessorKey: 'description',
   },
   {
-    cell: ({ table, ...props }) => {
-      console.log({ props, id: props.row.id, original: props.row.original });
+    cell: ({ table, row }) => {
+      const { handleDelete, handleUpdate, handleTrigger } = table.options
+        .meta as TableMeta;
 
-      const {
-        handleDeleteTemplate,
-        handleUpdateTemplate,
-        handleTriggerTemplate,
-      } = table.options.meta as TableMeta;
       return (
         <div className="flex">
           <button
-            onClick={handleTriggerTemplate}
+            onClick={() => handleTrigger(row.original._id)}
             className="btn btn-circle bg-base-200 mr-2"
           >
             <FaPlay size={18} />
           </button>
           <button
-            onClick={handleUpdateTemplate}
+            onClick={handleUpdate}
             className="btn btn-circle bg-base-200 mr-2"
           >
             <MdEdit size={18} />
           </button>
           <button
-            onClick={handleDeleteTemplate}
+            onClick={() => handleDelete(row.original._id)}
             className="btn btn-circle bg-red-400 text-white"
           >
             <MdDelete size={18} />
@@ -60,20 +60,51 @@ const columns: ColumnDef<ITemplate>[] = [
   },
 ];
 
+const templateRepository = new TemplateRepository();
+
 export const ListTemplatePage = () => {
+  const modalRef = useRef<HTMLDialogElement | null>(null);
   const [page, setPage] = useState(1);
-  const { data, meta, isLoading } = useQueryTemplates({ limit: 3, page });
 
-  const handleNextPage = () => {
+  const alert = useAlert();
+
+  const { data, meta, refetch, isLoading } = useQueryTemplates({
+    limit: 3,
+    page,
+  });
+
+  const handleNextPage = () =>
     setPage((oldPage) => (oldPage < meta.totalPage ? oldPage + 1 : oldPage));
-  };
 
-  const handlePrevPage = () => {
+  const handlePrevPage = () =>
     setPage((oldPage) => (oldPage > 1 ? oldPage - 1 : 1));
+
+  const handleDelete = (id: string) => {
+    if (!modalRef.current) return;
+    modalRef.current.dataset['id'] = id;
+    modalRef.current.showModal();
   };
 
-  const handleDeleteTemplate = () => {
-    console.log('Deleted');
+  const confirmDelete = async () => {
+    if (!modalRef.current) return;
+
+    try {
+      const { dataset } = modalRef.current;
+      const templateId = dataset['id'];
+
+      if (!templateId) return alert.error('Template id not found');
+
+      const response = await templateRepository.delete(templateId);
+
+      if (response.status !== HttpStatusCode.NO_CONTENT) {
+        return alert.error(response.statusText);
+      }
+
+      alert.info('Delete success!');
+      refetch();
+    } catch (error: any) {
+      alert.error(error.message);
+    }
   };
 
   if (isLoading) {
@@ -96,11 +127,19 @@ export const ListTemplatePage = () => {
             data={data}
             columns={columns}
             pagination={meta}
-            meta={{ handleDeleteTemplate }}
+            meta={{ handleDelete }}
             onNextPage={handleNextPage}
             onPrevPage={handlePrevPage}
           />
         </div>
+
+        <ModalConfirm
+          ref={modalRef}
+          title="Confirm Delete"
+          description="You can't restore workflow again"
+          extraBtnConfirm="btn-error text-white"
+          onConfirm={confirmDelete}
+        />
       </Card>
     </div>
   );

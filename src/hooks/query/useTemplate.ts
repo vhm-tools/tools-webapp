@@ -28,14 +28,13 @@ export const useQueryTemplates = (
   const { data, refetch, status, isError, isLoading } = useQuery({
     queryKey: ['templates', params],
     queryFn: () =>
-      templateRepository.listTemplates({
+      templateRepository.getList({
         query: {
           ...params,
         },
       }),
-    refetchOnWindowFocus: false,
     enabled: true,
-    staleTime: Infinity,
+    staleTime: 1000 * 60 * 5, // Infinity,
     ...queryParams,
   });
 
