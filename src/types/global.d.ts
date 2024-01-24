@@ -8,6 +8,7 @@ declare global {
   interface RoutePropsType {
     name: string;
     path: string;
+    isHiden?: boolean;
     icon?: JSX.Element | string;
   }
 }

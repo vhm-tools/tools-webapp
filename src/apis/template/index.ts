@@ -1,8 +1,10 @@
 import { IHttpResponse } from '@/types/http';
 import {
+  ITemplate,
   IListTemplateParams,
   IListTemplate,
   ICreateTemplate,
+  IUpdateTemplate,
 } from '@/types/template';
 import { convertObjectToQuery } from '@/utils';
 import { HttpMethod, HttpStatusCode } from '@/constants/api';
@@ -32,6 +34,27 @@ export class TemplateRepository {
       method: HttpMethod.DELETE,
     });
     return response as Response;
+  }
+
+  async update(id: string, payload: IUpdateTemplate): Promise<IHttpResponse> {
+    const response = await this.http.fetch(`${this.apiPrefix}/${id}`, {
+      method: HttpMethod.PATCH,
+      body: JSON.stringify(payload),
+    });
+    return response as IHttpResponse;
+  }
+
+  async getInfo(id: string): Promise<ITemplate> {
+    const response = await this.http.fetch(`${this.apiPrefix}/${id}`, {
+      method: HttpMethod.GET,
+    });
+    const { data, statusCode, message } = response as IHttpResponse<ITemplate>;
+
+    if (statusCode !== HttpStatusCode.OK) {
+      throw new Error(message);
+    }
+
+    return data;
   }
 
   async getList(params: IListTemplateParams): Promise<IListTemplate> {

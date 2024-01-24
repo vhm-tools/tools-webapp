@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { ColumnDef } from '@tanstack/react-table';
+import { Link } from 'react-router-dom';
 import { Card, Loader, Table } from '@/components';
 import { ModalConfirm } from '@/components/modal';
 import { useQueryTemplates } from '@/hooks/query/useTemplate';
@@ -19,7 +20,18 @@ type TableMeta = {
 
 const columns: ColumnDef<ITemplate>[] = [
   {
-    cell: (info) => info.getValue(),
+    cell: (info) => {
+      const { original } = info.row;
+
+      return (
+        <Link
+          to={`/admin/template/detail/${original._id}`}
+          className="hover:text-brandLinear"
+        >
+          {info.getValue() as string}
+        </Link>
+      );
+    },
     header: 'Name',
     accessorKey: 'name',
   },
