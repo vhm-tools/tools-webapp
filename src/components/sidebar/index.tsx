@@ -1,9 +1,12 @@
 import { FC } from 'react';
+import { RouteObject } from 'react-router-dom';
 
 import { HiX } from 'react-icons/hi';
 
 import { ERoute, routes } from '@/routes';
 import SidebarItem from './components/SidebarItem';
+
+type RouterChildren = Array<RouteObject & { props: RoutePropsType }>;
 
 type Props = {
   open: boolean;
@@ -34,13 +37,14 @@ export const Sidebar: FC<Props> = ({ open, onClose }) => {
       <ul className="menu w-full rounded-box mb-auto pt-1">
         {routes[ERoute.ADMIN].children.map((route, index) => {
           const { name, icon } = route.props;
+
           return (
             <SidebarItem
               key={`${index + 1}-${route.path}`}
               name={name}
               path={route.path}
               icon={icon}
-              children={route.children}
+              children={route.children as RouterChildren}
             />
           );
         })}

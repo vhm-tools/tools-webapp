@@ -14,7 +14,8 @@ type Props = {
 
 const SidebarItem: FC<Props> = ({ name, path, icon, children }) => {
   const location = useLocation();
-  const isActive = location.pathname.includes(path);
+  const pathname = location.pathname;
+  const isActive = pathname.includes(path);
 
   return (
     <li
@@ -25,19 +26,26 @@ const SidebarItem: FC<Props> = ({ name, path, icon, children }) => {
     >
       {children?.length ? (
         <details open>
-          <summary className="px-4 py-4 text-black">
+          <summary
+            className={cn('px-4 py-4 text-black', {
+              'bg-lightPrimary': isActive,
+            })}
+          >
             {icon ? icon : <DashIcon />}
             {name}
           </summary>
           <ul>
-            {children.map(({ props }, index) => (
-              <SidebarSubItem
-                key={index}
-                name={props.name}
-                path={props.path}
-                isActive={location.pathname.includes(props.path)}
-              />
-            ))}
+            {children.map(({ props }, index) => {
+              if (props.isHiden) return null;
+              return (
+                <SidebarSubItem
+                  key={index}
+                  name={props.name}
+                  path={props.path}
+                  isActive={location.pathname.includes(props.path)}
+                />
+              );
+            })}
           </ul>
         </details>
       ) : (
@@ -48,7 +56,8 @@ const SidebarItem: FC<Props> = ({ name, path, icon, children }) => {
           })}
           style={{ color: isActive ? 'white' : 'black' }}
         >
-          {icon ? icon : <DashIcon />} {name}
+          {icon ? icon : <DashIcon />}
+          {name}
         </Link>
       )}
     </li>

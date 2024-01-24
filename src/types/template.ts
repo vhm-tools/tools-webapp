@@ -5,6 +5,7 @@ export interface ITemplate {
   _id: string;
   name: string;
   description: string;
+  flows: string;
   userId: string;
 }
 
@@ -18,7 +19,17 @@ interface IWorkflowStep {
 export interface ICreateTemplate {
   name: string;
   description: string;
+  flows: string;
   steps: IWorkflowStep[];
+}
+
+/**
+ * Update Template
+ */
+export interface IUpdateTemplate {
+  name?: string;
+  description?: string;
+  flows?: string;
 }
 
 /**

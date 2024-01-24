@@ -71,6 +71,19 @@ export const routes = {
               };
             },
           },
+          {
+            path: 'detail/:id',
+            props: {
+              path: 'template/detail',
+              isHiden: true,
+            },
+            async lazy() {
+              const { UpdateTemplatePage } = await import('@/pages/template');
+              return {
+                Component: UpdateTemplatePage,
+              };
+            },
+          },
         ],
         props: {
           name: 'Template',

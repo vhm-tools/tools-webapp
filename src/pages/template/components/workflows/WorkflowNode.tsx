@@ -14,7 +14,7 @@ export const WorkflowNode: FC<Props> = ({ data, isConnectable }) => {
         position={Position.Top}
         isConnectable={isConnectable}
       />
-      {data.icon}
+      {data.icon?.key && data.icon}
       <span className="text-sm ml-1">{data.label}</span>
       <Handle
         type="source"

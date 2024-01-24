@@ -1,78 +1,76 @@
-import { useState } from 'react';
-import { FormikHelpers, useFormik } from 'formik';
+import { useFormik } from 'formik';
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 import { useAlert } from 'react-alert';
 
 /*
  * Components
  */
-import { Button, Card, ErrorMessage } from '@/components';
+import { Button, Card, ErrorMessage, Loader } from '@/components';
 import { InputField } from '@/components/fields';
 
-import { ICreateTemplate } from '@/types/template';
-import { createTemplateSchema } from '@/validations';
-import { Toolbar, Workflow } from './components';
+import { IUpdateTemplate } from '@/types/template';
+import { updateTemplateSchema } from '@/validations';
+import { Workflow } from './components';
 import { TemplateRepository } from '@/apis';
 import { HttpStatusCode } from '@/constants/api';
+// import { useQueryWorkflows } from '@/hooks/query/useWorkflow';
 
 const templateRepository = new TemplateRepository();
 
-export const CreateTemplatePage = () => {
-  const [rfInstance, setRfInstance] = useState<any>(null);
-
+export const UpdateTemplatePage = () => {
+  const { id: templateId } = useParams();
   const alert = useAlert();
 
-  const handleSubmit = async (
-    values: ICreateTemplate,
-    { resetForm }: FormikHelpers<ICreateTemplate>,
-  ) => {
+  // const { data: listWorkflows, isLoading: isWorkflowLoading } =
+  //   useQueryWorkflows({
+  //     templateId,
+  //   });
+
+  const { data: templateInfo, isLoading } = useQuery({
+    queryKey: ['template', templateId],
+    queryFn: () => templateRepository.getInfo(templateId as string),
+  });
+
+  const handleSubmit = async (values: IUpdateTemplate) => {
     try {
-      if (rfInstance) {
-        const flows = rfInstance.toObject();
-        const { nodes } = flows;
-
-        values.flows = JSON.stringify(flows);
-
-        if (nodes.length) {
-          nodes.shift();
-          values.steps = nodes.map((node: any) => ({
-            id: node.data.id as string,
-            label: node.data.label as string,
-          }));
-        }
-      }
-
-      const response = await templateRepository.create(values);
-      resetForm();
+      const response = await templateRepository.update(
+        templateId as string,
+        values,
+      );
 
       if (response.statusCode !== HttpStatusCode.OK) {
         return alert.error(response.message);
       }
 
-      alert.success('Create template successful');
+      alert.success('Update template successful');
     } catch (error: any) {
       alert.error(error.message);
     }
   };
 
-  const initialValues: ICreateTemplate = {
-    name: '',
-    description: '',
-    flows: '',
-    steps: [],
+  const initialValues: IUpdateTemplate = {
+    name: templateInfo?.name || '',
+    description: templateInfo?.description || '',
   };
 
   const formik = useFormik({
-    validationSchema: createTemplateSchema,
+    validationSchema: updateTemplateSchema,
+    enableReinitialize: true,
     initialValues,
     onSubmit: handleSubmit,
   });
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className="flex w-full">
       <Card extra="!p-[20px] w-2/4 mt-3 mr-3">
         <header className="relative flex flex-col items-start pt-4 mb-4">
           <div className="text-xl font-bold text-navy-700 dark:text-white">
-            Create new template
+            Update your template
           </div>
         </header>
 
@@ -114,23 +112,31 @@ export const CreateTemplatePage = () => {
             }
           />
           <div className="w-full flex justify-end">
-            <Button text="Create" type="submit" extra="w-2/5" />
+            <Button
+              text="Save"
+              disabled={
+                formik.values.name === templateInfo?.name &&
+                formik.values.description === templateInfo?.description
+              }
+              type="submit"
+              extra="w-2/5"
+            />
           </div>
         </form>
 
-        <Toolbar />
+        {/* <Toolbar /> */}
       </Card>
       <Card extra="!p-[20px] w-3/4 mt-3">
         <header className="relative flex flex-col items-start pt-4 mb-4">
           <div className="text-xl font-bold text-navy-700 dark:text-white">
-            Create your workflow
+            Update your workflow
           </div>
           <p className="text-center text-base font-normal text-gray-600">
             Workflow template to start trigger event
           </p>
         </header>
 
-        <Workflow rfInstance={rfInstance} setRfInstance={setRfInstance} />
+        <Workflow flows={templateInfo?.flows} />
       </Card>
     </div>
   );
